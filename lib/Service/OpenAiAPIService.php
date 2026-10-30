@@ -998,6 +998,9 @@ class OpenAiAPIService {
 			'prompt' => $prompt,
 			'size' => $size,
 			'n' => $n,
+			// b64 avoids a second fetch of the server-reported image URL,
+			// which is often unreachable off-host for self-hosted backends
+			'response_format' => 'b64_json',
 		];
 		$modelParam = $this->modelParam($service, $model, Application::DEFAULT_IMAGE_MODEL_ID);
 		if ($modelParam !== null) {
